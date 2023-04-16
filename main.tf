@@ -58,3 +58,7 @@ module "module-vpc" {
 
 
 
+output "values" {
+  value=module.module-vpc
+  
+}
