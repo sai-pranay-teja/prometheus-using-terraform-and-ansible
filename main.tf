@@ -55,3 +55,4 @@ module "module-vpc" {
   private_subnets=each.value["private_subnets"]
 
 }
+
