@@ -5,7 +5,7 @@ provider "aws" {
 
 
 
-module "role-attachment"{
+/* module "role-attachment"{
   
 
   source = "./role-attachment"
@@ -21,7 +21,7 @@ module "normal-instance-launch"{
   roles=module.role-attachment.roles
 }
 
-/* module "spot-instances"{
+module "spot-instances"{
   for_each=var.ansible-practise
   instance_type=each.value["type"]
   component=each.value["name"]
@@ -36,10 +36,22 @@ module "tags-for-spot-instances" {
   key=each.value["key"]
   component=each.value["name"]
   spot-id=module.spot-instances[each.key].spot-id
-} */
+}
 
 output "public" {
   value=module.normal-instance-launch
   
-}
+} */
+
+
   
+module "module-vpc" {
+  env=var.env
+  tags=var.tags
+  for_each = var.ansible-practise
+  source = "https://github.com/sai-pranay-teja/module-vpc.git"
+  vpc_cidr=each.value["vpc_cidr"]
+  public_subnets=each.value["public_subnets"]
+  private_subnets=each.value["private_subnets"]
+
+}

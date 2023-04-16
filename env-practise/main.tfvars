@@ -1,18 +1,23 @@
+env="practise"
 vpc-practise={
     main-vpc={
         vpc_cidr="10.0.0.0/24"
         public_subnets={
-                name="subnet-1"
+                name="public_subnet"
                 cidr_block="10.0.0.0/28"
         }
         private_subnets={
-                name="subnet-1"
+                name="private_subnet"
                 cidr_block="10.0.0.16/28"
         }
     }
 }
 
-
+tags={
+    Course="DevOps"
+    job="TCS"
+    Emp_name="Pranay"
+}
 
 
 
