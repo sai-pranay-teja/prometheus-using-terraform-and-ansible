@@ -1,4 +1,5 @@
 git:
+	terraform destroy -var-file=env-practise/main.tfvars -auto-approve
 	rm -rf terraform* .terraform*
 	git pull
 
