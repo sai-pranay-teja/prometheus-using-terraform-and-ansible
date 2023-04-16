@@ -48,7 +48,7 @@ output "public" {
 module "module-vpc" {
   env=var.env
   tags=var.tags
-  for_each = var.ansible-practise
+  for_each = var.vpc-practise
   source = "git::https://github.com/sai-pranay-teja/module-vpc.git"
   vpc_cidr=each.value["vpc_cidr"]
   public_subnets=each.value["public_subnets"]
