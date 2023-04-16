@@ -3,12 +3,12 @@ vpc-practise={
     main-vpc={
         vpc_cidr="10.0.0.0/24"
         public_subnets={
-                name="public_subnet"
-                cidr_block="10.0.0.0/28"
+            name="public_subnet"
+            cidr_block="10.0.0.0/28"
         }
         private_subnets={
-                name="private_subnet"
-                cidr_block="10.0.0.16/28"
+            name="private_subnet"
+            cidr_block="10.0.0.16/28"
         }
     }
 }
