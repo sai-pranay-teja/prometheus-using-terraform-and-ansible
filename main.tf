@@ -5,7 +5,7 @@ provider "aws" {
 
 
 
-module "role-attachment"{
+/* module "role-attachment"{
   
 
   source = "./role-attachment"
@@ -21,7 +21,7 @@ module "normal-instance-launch"{
   roles=module.role-attachment.roles
 }
 
-/* module "spot-instances"{
+module "spot-instances"{
   for_each=var.ansible-practise
   instance_type=each.value["type"]
   component=each.value["name"]
@@ -45,7 +45,7 @@ output "public" {
 
 
   
-/* module "module-vpc" {
+module "module-vpc" {
   env=var.env
   tags=var.tags
   for_each = var.vpc-practise
@@ -55,6 +55,6 @@ output "public" {
   public_subnets=each.value["public_subnets"]
   private_subnets=each.value["private_subnets"]
 
-} */
+}
 
 
