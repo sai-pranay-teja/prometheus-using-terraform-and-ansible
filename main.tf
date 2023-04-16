@@ -51,7 +51,7 @@ module "module-vpc" {
   for_each = var.vpc-practise
   source = "git::https://github.com/sai-pranay-teja/module-vpc.git"
   vpc_cidr=each.value["vpc_cidr"]
-  main-vpc=each.value["main-vpc"]
+  /* main-vpc=each.value["main-vpc"] */
   public_subnets=each.value["public_subnets"]
   private_subnets=each.value["private_subnets"]
 
