@@ -19,29 +19,32 @@ module "normal-instance-launch"{
   name=var.role["name"]
   role_check=var.role["role_assigning"]
   roles=module.role-attachment.roles
-}
+} */
 
 module "spot-instances"{
-  for_each=var.ansible-practise
+  for_each = var.vpc-practise
   instance_type=each.value["type"]
   component=each.value["name"]
   source = "./spot-instance-launch"
+  security-ID=module.module-vpc.security-ID
+  public_subnet_id=module.module-vpc.public_subnet_id
+  private_subnet_id=module.module-vpc.private_subnet_id
+
+  
   
 }
 
 
 module "tags-for-spot-instances" {
-  for_each = var.ansible-practise
+  for_each = var.vpc-practise
   source = "./tags-for-spot-instance"
   key=each.value["key"]
   component=each.value["name"]
   spot-id=module.spot-instances[each.key].spot-id
 }
 
-output "public" {
-  value=module.normal-instance-launch
+
   
-} */
 
 
   
@@ -58,3 +61,7 @@ module "module-vpc" {
 }
 
 
+output "ip" {
+  value = module.spot-instances
+  
+}

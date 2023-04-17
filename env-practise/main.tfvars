@@ -5,10 +5,14 @@ vpc-practise={
         public_subnets={
             name="public_subnet"
             cidr_block="10.0.0.0/28"
+            type="t2.micro"
+            key="Name"
         }
         private_subnets={
             name="private_subnet"
             cidr_block="10.0.0.16/28"
+            type="t2.micro"
+            key="Name"
         }
     }
 }
@@ -33,7 +37,6 @@ ansible-practise={
     Instance-1={
        name="Instance_1"
        type="t3a.small"
-       key="Name"
     }
     /* Instance-2={
         name="Instance_2"
