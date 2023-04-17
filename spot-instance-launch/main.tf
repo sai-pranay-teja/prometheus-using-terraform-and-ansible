@@ -42,7 +42,6 @@ resource "aws_spot_instance_request" "public_instance" {
     wait_for_fulfillment=true
     vpc_security_group_ids = var.security-ID
     subnet_id = var.public_subnet_id
-
     tags = {
       Name = var.component
     }
