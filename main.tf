@@ -42,16 +42,15 @@ module "module-vpc" {
 
 
 module "spot-instances"{
-  depends_on = [module.module-vpc]
   for_each = var.vpc-practise
   public_instance_type=each.value["public_subnets"].type
   private_instance_type=each.value["private_subnets"].type
   private_component=each.value["private_subnets"].instance_name
   public_component=each.value["public_subnets"].instance_name
   source = "./spot-instance-launch"
-  security-ID=module.module-vpc.security-ID
-  public_subnet_id=module.module-vpc.public_subnet_id
-  private_subnet_id=module.module-vpc.private_subnet_id
+  security-ID=module.module-vpc["main-vpc"].security-ID
+  public_subnet_id=module.module-vpc["main-vpc"].public_subnet_id
+  private_subnet_id=module.module-vpc["main-vpc"].private_subnet_id
 
   
   
