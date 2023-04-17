@@ -42,7 +42,7 @@ module "module-vpc" {
 
 
 module "spot-instances"{
-  /* depends_on = [module.module-vpc] */
+  depends_on = [module.module-vpc]
   for_each = var.vpc-practise
   public_instance_type=each.value["public_subnets"].type
   private_instance_type=each.value["private_subnets"].type
