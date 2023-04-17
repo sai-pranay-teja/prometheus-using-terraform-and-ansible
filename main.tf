@@ -21,6 +21,26 @@ module "normal-instance-launch"{
   roles=module.role-attachment.roles
 } */
 
+
+
+
+  
+
+
+  
+module "module-vpc" {
+  env=var.env
+  tags=var.tags
+  for_each = var.vpc-practise
+  source = "git::https://github.com/sai-pranay-teja/module-vpc.git"
+  vpc_cidr=each.value["vpc_cidr"]
+  /* main-vpc=each.value["main-vpc"] */
+  public_subnets=each.value["public_subnets"]
+  private_subnets=each.value["private_subnets"]
+
+}
+
+
 module "spot-instances"{
   for_each = var.vpc-practise
   public_instance_type=each.value["public_subnets"].type
@@ -40,27 +60,12 @@ module "spot-instances"{
 module "tags-for-spot-instances" {
   for_each = var.vpc-practise
   source = "./tags-for-spot-instance"
-  key=each.value["key"]
-  component=each.value["name"]
+  public_key=each.value["public_subnets"].key
+  private_key=each.value["private_subnets"].key
+  private_component=each.value["private_subnets"].instance_name
+  public_component=each.value["public_subnets"].instance_name
   public-spot-id=module.spot-instances[each.key].public-spot-id
   private-spot-id=module.spot-instances[each.key].private-spot-id
-}
-
-
-  
-
-
-  
-module "module-vpc" {
-  env=var.env
-  tags=var.tags
-  for_each = var.vpc-practise
-  source = "git::https://github.com/sai-pranay-teja/module-vpc.git"
-  vpc_cidr=each.value["vpc_cidr"]
-  /* main-vpc=each.value["main-vpc"] */
-  public_subnets=each.value["public_subnets"]
-  private_subnets=each.value["private_subnets"]
-
 }
 
 
