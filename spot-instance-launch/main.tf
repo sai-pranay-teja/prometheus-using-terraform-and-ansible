@@ -4,8 +4,8 @@ resource "aws_spot_instance_request" "private_instance" {
     spot_type     = "persistent"
     instance_interruption_behavior = "stop"
     wait_for_fulfillment=true
-    vpc_security_group_ids = var.security-ID
-    subnet_id = [var.private_subnet_id]
+    vpc_security_group_ids = [var.security-ID]
+    subnet_id = var.private_subnet_id
 
     tags = {
       Name = var.private_component
@@ -40,8 +40,8 @@ resource "aws_spot_instance_request" "public_instance" {
     spot_type     = "persistent"
     instance_interruption_behavior = "stop"
     wait_for_fulfillment=true
-    vpc_security_group_ids = var.security-ID
-    subnet_id = [var.public_subnet_id]
+    vpc_security_group_ids = [var.security-ID]
+    subnet_id = var.public_subnet_id
     tags = {
       Name = var.public_component
     }
