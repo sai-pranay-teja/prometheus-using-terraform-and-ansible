@@ -1,6 +1,6 @@
 resource "aws_spot_instance_request" "private_instance" {
     ami           = "ami-0bb6af715826253bf"
-    instance_type = var.instance_type
+    instance_type = var.private_instance_type
     spot_type     = "persistent"
     instance_interruption_behavior = "stop"
     wait_for_fulfillment=true
@@ -8,7 +8,7 @@ resource "aws_spot_instance_request" "private_instance" {
     subnet_id = var.private_subnet_id
 
     tags = {
-      Name = var.component
+      Name = var.private_component
     }
 
     timeouts {
@@ -36,14 +36,14 @@ resource "aws_spot_instance_request" "private_instance" {
 
 resource "aws_spot_instance_request" "public_instance" {
     ami           = "ami-0bb6af715826253bf"
-    instance_type = var.instance_type
+    instance_type = var.public_instance_type
     spot_type     = "persistent"
     instance_interruption_behavior = "stop"
     wait_for_fulfillment=true
     vpc_security_group_ids = var.security-ID
     subnet_id = var.public_subnet_id
     tags = {
-      Name = var.component
+      Name = var.public_component
     }
 
     timeouts {

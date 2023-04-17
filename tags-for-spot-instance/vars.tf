@@ -1,3 +1,4 @@
 variable "key"{}
 variable "component"{}
-variable "spot-id"{}
+variable "public-spot-id"{}
+variable "private-spot-id"{}

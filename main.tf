@@ -23,8 +23,10 @@ module "normal-instance-launch"{
 
 module "spot-instances"{
   for_each = var.vpc-practise
-  instance_type=each.value["type"]
-  component=each.value["name"]
+  public_instance_type=each.value["public_subnets"].type
+  private_instance_type=each.value["private_subnets"].type
+  private_component=each.value["private_subnets"].instance_name
+  public_component=each.value["public_subnets"].instance_name
   source = "./spot-instance-launch"
   security-ID=module.module-vpc.security-ID
   public_subnet_id=module.module-vpc.public_subnet_id
@@ -40,7 +42,8 @@ module "tags-for-spot-instances" {
   source = "./tags-for-spot-instance"
   key=each.value["key"]
   component=each.value["name"]
-  spot-id=module.spot-instances[each.key].spot-id
+  public-spot-id=module.spot-instances[each.key].public-spot-id
+  private-spot-id=module.spot-instances[each.key].private-spot-id
 }
 
 
